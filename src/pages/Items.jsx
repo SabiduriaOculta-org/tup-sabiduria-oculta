@@ -1,43 +1,35 @@
 import { useEffect, useState } from "react";
+import categoriesInfo from "../data/categoriesInfo";
 
 function Items() {
   const [categorias, setCategorias] = useState([]);
-  const [cargando, setCargando] = useState(true);
 
   useEffect(() => {
     fetch("https://opentdb.com/api_category.php")
       .then((response) => response.json())
       .then((data) => {
         setCategorias(data.trivia_categories);
-        setCargando(false);
       })
       .catch((error) => {
-        console.error("Error:", error);
-        setCargando(false);
+        console.error(error);
       });
   }, []);
-
-  if (cargando) {
-    return <h2>Cargando categorías...</h2>;
-  }
 
   return (
     <div>
       <h1>Sabiduría Oculta</h1>
 
-      <p>Seleccioná una categoría:</p>
-
       <div className="categories-grid">
         {categorias.map((categoria) => (
-          <div
-            key={categoria.id}
-            className="category-card"
-          >
-            <h3>{categoria.name}</h3>
+          <div key={categoria.id} className="category-card">
+            <h3>
+              {categoriesInfo[categoria.id]?.displayName ||
+                categoria.name}
+            </h3>
 
             <p>
-              Próximamente agregaremos descripción
-              e imagen.
+              {categoriesInfo[categoria.id]?.description ||
+                "Descripción no disponible"}
             </p>
           </div>
         ))}
