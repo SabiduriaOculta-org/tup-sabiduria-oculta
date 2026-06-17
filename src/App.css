@@ -107,6 +107,12 @@ main h1 {
   flex-grow: 1;
 }
 
+.question-count {
+  margin-top: 10px;
+  font-weight: bold;
+  color: #1f5c59;
+}
+
 .play-btn {
   margin-top: 15px;
 

@@ -5,20 +5,48 @@ function Items() {
   const [categorias, setCategorias] = useState([]);
 
   useEffect(() => {
-    fetch("https://opentdb.com/api_category.php")
-      .then((response) => response.json())
-      .then((data) => {
-        setCategorias(data.trivia_categories);
-      })
-      .catch((error) => {
+    const cargarCategorias = async () => {
+      try {
+        const response = await fetch(
+          "https://opentdb.com/api_category.php"
+        );
+
+        const data = await response.json();
+
+        const categoriasConCantidad = await Promise.all(
+          data.trivia_categories.map(async (categoria) => {
+            const countResponse = await fetch(
+              `https://opentdb.com/api_count.php?category=${categoria.id}`
+            );
+
+            const countData = await countResponse.json();
+
+            return {
+              ...categoria,
+              totalPreguntas:
+                countData.category_question_count
+                  .total_question_count,
+            };
+          })
+        );
+
+        setCategorias(categoriasConCantidad);
+      } catch (error) {
         console.error(error);
-      });
+      }
+    };
+
+    cargarCategorias();
   }, []);
 
   return (
     <div>
       <h1>Sabiduría Oculta</h1>
-      <p>Seleccioná una categoría para comenzar tu aventura.</p>
+
+      <p>
+        Seleccioná una categoría para comenzar tu
+        aventura.
+      </p>
 
       <div className="categories-grid">
         {categorias.map((categoria) => (
@@ -34,6 +62,10 @@ function Items() {
             <p>
               {categoriesInfo[categoria.id]?.description ||
                 "Descripción no disponible"}
+            </p>
+
+            <p className="question-count">
+              {categoria.totalPreguntas} preguntas
             </p>
 
             <button className="play-btn">
