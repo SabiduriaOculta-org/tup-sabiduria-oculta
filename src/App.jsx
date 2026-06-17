@@ -1,7 +1,5 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import Login from "./components/Login";
-import Settings from "./pages/Settings";
-import Home from "./pages/Home";
 
 function App() {
   const isLoggedIn = sessionStorage.getItem("loggedIn") === "true";
