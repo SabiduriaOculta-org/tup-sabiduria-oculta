@@ -54,6 +54,15 @@ function Items() {
             key={categoria.id}
             className="category-card"
           >
+            <img
+              src={categoriesInfo[categoria.id]?.image}
+              alt={
+                categoriesInfo[categoria.id]?.displayName ||
+                categoria.name
+              }
+              className="category-image"
+            />
+
             <h3>
               {categoriesInfo[categoria.id]?.displayName ||
                 categoria.name}
