@@ -178,4 +178,16 @@ main p {
   .category-image {
     height: 200px;
   }
+
+  .login-header {
+  text-align: center;
+  margin-bottom: 1rem;
+  }
+
+  .login-logo {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  margin-bottom: 10px;
+  }
 }
