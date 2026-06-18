@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 function BottomBar() {
   return (
     <nav className="bottom-bar">
-      <Link to="/">Items</Link>
+      <Link to="/">Jugar</Link>
 
-      <Link to="/configuracion">
+      <Link to="/Settings">
         Configuración
       </Link>
     </nav>

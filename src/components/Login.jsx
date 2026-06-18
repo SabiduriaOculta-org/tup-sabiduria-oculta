@@ -13,7 +13,7 @@ export default function Login() {
     setLoading(true);
     setTimeout(() => {
       sessionStorage.setItem("loggedIn", "true");
-      navigate("/home");
+      window.location.href = "/";
     }, 2000);
   };
 

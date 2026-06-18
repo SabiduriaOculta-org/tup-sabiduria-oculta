@@ -5,9 +5,9 @@ function Sidebar() {
     <aside className="sidebar">
       <h2>Sabiduría Oculta</h2>
 
-      <Link to="/">Items</Link>
+      <Link to="/">Jugar</Link>
 
-      <Link to="/configuracion">
+      <Link to="/Settings">
         Configuración
       </Link>
     </aside>

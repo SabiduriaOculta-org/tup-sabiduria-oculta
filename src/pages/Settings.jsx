@@ -11,15 +11,20 @@ export default function Settings() {
 
   const handleLogout = () => {
     confirmDialog({
-      message: "¿Seguro que deseas cerrar sesión?",
-      header: "Confirmación",
-      icon: "pi pi-exclamation-triangle",
-      accept: () => {
-        sessionStorage.clear();
-        navigate("/login");
-      },
-      reject: () => {}
-    });
+  message: "¿Seguro que deseas cerrar sesión?",
+  header: "Confirmación",
+  icon: "pi pi-exclamation-triangle",
+
+  acceptLabel: "Sí",
+  rejectLabel: "No",
+
+  accept: () => {
+    sessionStorage.clear();
+    navigate("/login");
+  },
+
+  reject: () => {}
+  });
   };
 
   return (
@@ -41,8 +46,8 @@ export default function Settings() {
               shape="circle" 
               className="p-mb-3" 
             />
-            <h3>John Doe</h3>
-            <p>john@example.com</p>
+            <h3>Jugador</h3>
+            <p>Bienvenido a Sabiduría Oculta</p>
           </div>
 
           <Divider />
@@ -50,8 +55,8 @@ export default function Settings() {
           {/* Información de la aplicación */}
           <div style={{ marginBottom: "1rem" }}>
             <h3>Información de la App</h3>
-            <p><strong>Logo:</strong> 🌀 MiApp</p>
-            <p><strong>Versión:</strong> 1.0.0</p>
+            <p><strong>Aplicación:</strong> Sabiduría Oculta</p>
+            <p><strong>Versión:</strong> TP 4</p>
             <p><strong>User Agent:</strong> {userAgent}</p>
           </div>
 
