@@ -190,4 +190,15 @@ main p {
   object-fit: contain;
   margin-bottom: 10px;
   }
+
+  .loading-container {
+  text-align: center;
+  }
+
+  .controls input,
+  .controls select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  }
 }
