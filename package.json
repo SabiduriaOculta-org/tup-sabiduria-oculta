@@ -10,8 +10,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+<<<<<<< HEAD
     "primeicons": "^7.0.0",
     "primereact": "^10.9.8",
+=======
+    "firebase": "^12.15.0",
+>>>>>>> 9739a68f7a4fc8cb8f03a925dc3593971d9d878e
     "react": "^19.2.5",
     "react-dom": "^19.2.5",
     "react-router-dom": "^7.18.0"
