@@ -1,4 +1,8 @@
+import { useEffect, useState } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
+import { onAuthStateChanged } from "firebase/auth";
+
+import { auth } from "./firebase";
 
 import Login from "./components/Login";
 import Layout from "./components/Layout";
@@ -9,22 +13,39 @@ import Settings from "./pages/Settings";
 import "./App.css";
 
 function App() {
-  const isLoggedIn =
-    sessionStorage.getItem("loggedIn") === "true";
+  const [user, setUser] = useState(undefined);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(
+      auth,
+      (currentUser) => {
+        setUser(currentUser);
+      }
+    );
+
+    return () => unsubscribe();
+  }, []);
+
+  if (user === undefined) {
+    return <div>Cargando...</div>;
+  }
 
   return (
     <Routes>
-
       <Route
         path="/login"
-        element={<Login />}
+        element={
+          user ? <Navigate to="/" /> : <Login />
+        }
       />
 
       <Route
         element={
-          isLoggedIn
-            ? <Layout />
-            : <Navigate to="/login" />
+          user ? (
+            <Layout />
+          ) : (
+            <Navigate to="/login" />
+          )
         }
       >
         <Route
@@ -42,7 +63,6 @@ function App() {
         path="*"
         element={<Navigate to="/" />}
       />
-
     </Routes>
   );
 }
